@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ali Ganjizadeh</title>
+  <subtitle>Physician-scientist working on the parts of medical AI that decide whether a model can be trusted: the data, the labels and the evaluation.</subtitle>
+  <link href="https://magnooj.github.io/feed.xml" rel="self"/>
+  <link href="https://magnooj.github.io/"/>
+  <id>https://magnooj.github.io/</id>
+  <author><name>Ali Ganjizadeh, MD, MBA</name></author>
+  <updated>2026-10-28T00:00:00.000Z</updated>
+  <entry>
+    <title>The model is not the hard part</title>
+    <link href="https://magnooj.github.io/blog/the-model-is-not-the-hard-part/"/>
+    <id>https://magnooj.github.io/blog/the-model-is-not-the-hard-part/</id>
+    <updated>2026-10-28T00:00:00.000Z</updated>
+    <summary>Four questions for any medical AI tool, and why answering them takes clinical training more than code.</summary>
+  </entry>
+</feed>
