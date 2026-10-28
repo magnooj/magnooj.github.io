@@ -1,24 +1,40 @@
 ---
 layout: layouts/base.njk
 title: Writing
-description: Essays by Ali Ganjizadeh on medical AI, data, labels and evaluation.
+description: Notes on medical AI for clinicians and students, on data, labels and evaluation.
 permalink: /blog/
+crumb: { label: "Writing", url: "/blog/" }
 ---
-<section class="wrap section">
-  <header class="post-header">
-    <p class="kicker">Writing</p>
-    <h1>Notes on medical AI</h1>
-    <p class="dek">On data, labels and evaluation: the parts of medical AI that decide whether a model can be trusted.</p>
-  </header>
-  <ul class="post-list">
-    {%- for post in collections.posts %}
-    <li>
-      <a href="{{ post.url }}">
-        <span class="post-title">{{ post.data.title }}</span>
-        <span class="post-dek">{{ post.data.description }}</span>
-        <time datetime="{{ post.date | isoDate }}">{{ post.date | longDate }}</time>
-      </a>
-    </li>
+<main class="main">
+  <h1>Writing</h1>
+  <p class="dek">Notes on medical AI for clinicians and students, on the data, labels and evaluation that decide whether a model can be trusted.</p>
+  <ul class="pills" id="filters">
+    <li><button type="button" data-tag="" aria-pressed="true">All<span class="count">{{ collections.posts.length }}</span></button></li>
+    {%- for label in collections.posts | allLabels %}
+    <li><button type="button" data-tag="{{ label.name | slugify }}" aria-pressed="false">{{ label.name }}<span class="count">{{ label.count }}</span></button></li>
     {%- endfor %}
   </ul>
-</section>
+  <div class="post-list-head">
+    {%- for post in collections.posts %}
+    {% include "partials/post-card.njk" %}
+    {%- endfor %}
+  </div>
+</main>
+<script>
+(() => {
+  const buttons = [...document.querySelectorAll("#filters button")];
+  const cards = [...document.querySelectorAll(".post-card")];
+  const apply = (tag) => {
+    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tag === tag)));
+    cards.forEach((c) => { c.hidden = tag && !c.dataset.tags.split(" ").includes(tag); });
+  };
+  buttons.forEach((b) => b.addEventListener("click", () => {
+    const url = new URL(location.href);
+    b.dataset.tag ? url.searchParams.set("tag", b.dataset.tag) : url.searchParams.delete("tag");
+    history.replaceState(null, "", url);
+    apply(b.dataset.tag);
+  }));
+  const start = new URLSearchParams(location.search).get("tag") || "";
+  if (buttons.some((b) => b.dataset.tag === start)) apply(start);
+})();
+</script>

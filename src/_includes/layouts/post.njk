@@ -1,32 +1,57 @@
 ---
 layout: layouts/base.njk
+crumb: { label: "Writing", url: "/blog/" }
 ---
 {%- set postUrl = page.url | absoluteUrl(site.url) %}
-<article class="wrap post">
-  <header class="post-header">
-    <p class="kicker">{{ kicker or "Essay" }}</p>
+<header class="hero">
+  <div class="in">
+    <p class="kicker">Writing · {{ topic }}</p>
     <h1>{{ title }}</h1>
-    {%- if description %}<p class="dek">{{ description }}</p>{% endif %}
-    <p class="byline">
-      <span>{{ site.author }}</span>
-      <span aria-hidden="true">·</span>
-      <time datetime="{{ page.date | isoDate }}">{{ page.date | longDate }}</time>
-      <span aria-hidden="true">·</span>
-      <span>{{ content | readingTime }}</span>
-    </p>
-  </header>
-  <div class="prose">
-    {{ content | safe }}
+    <p class="dek">{{ dek or description }}</p>
+    <div class="post-meta">
+      {%- if talk %}<p><b>Talk</b> {{ talk | safe }}</p>{% endif %}
+      <p class="row">
+        <span><b>By</b> <a href="/about/">{{ site.author }}</a></span>
+        <span><b>Published</b> {{ page.date | shortDate }}</span>
+        <span><b>Reading time</b> ~{{ content | readingTime | replace(" read", "") }}</span>
+        {%- if labels %}<span><b>Tags</b> {% for l in labels %}{% if not loop.first %} · {% endif %}<a href="/blog/?tag={{ l | slugify }}">{{ l }}</a>{% endfor %}</span>{% endif %}
+      </p>
+      {%- if disclosure %}<p><b>Disclosure</b> {{ disclosure }}</p>{% endif %}
+    </div>
   </div>
-  <footer class="post-footer">
-    {%- if disclosure %}
-    <p class="disclosure"><strong>Disclosure.</strong> {{ disclosure }}</p>
-    {%- endif %}
-    <p class="share">
-      Share:
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ postUrl | urlencode }}">LinkedIn</a>
-      <a href="https://x.com/intent/post?url={{ postUrl | urlencode }}&text={{ title | urlencode }}&via=magnooj">X</a>
+</header>
+<main class="page">
+  {%- if toc %}
+  <nav class="toc" aria-label="Contents">
+    <p class="h">Contents</p>
+    <ol>
+      {%- for t in toc %}
+      <li><a href="#{{ t.id }}"><span>{{ t.n }}</span>{{ t.label }}</a></li>
+      {%- endfor %}
+    </ol>
+  </nav>
+  {%- endif %}
+  <article>
+    {{ content | safe }}
+    <p class="post-end">
+      <span>Share on <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ postUrl | urlencode }}">LinkedIn</a> or <a href="https://x.com/intent/post?url={{ postUrl | urlencode }}&text={{ title | urlencode }}&via=magnooj">X</a></span>
+      <a href="/blog/">← All writing</a>
     </p>
-    <p><a href="/blog/">← All writing</a></p>
-  </footer>
-</article>
+  </article>
+</main>
+{%- if toc %}
+<script>
+(() => {
+  const links = [...document.querySelectorAll(".toc a")];
+  const byId = new Map(links.map((a) => [a.hash.slice(1), a]));
+  const sections = [...byId.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  const setActive = () => {
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top < 120) current = s;
+    links.forEach((a) => a.classList.toggle("active", a === byId.get(current.id)));
+  };
+  addEventListener("scroll", setActive, { passive: true });
+  setActive();
+})();
+</script>
+{%- endif %}

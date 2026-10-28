@@ -2,12 +2,19 @@
   "title": "Ali Ganjizadeh",
   "author": "Ali Ganjizadeh, MD, MBA",
   "url": "https://magnooj.github.io",
-  "description": "Physician-scientist working on the parts of medical AI that decide whether a model can be trusted: the data, the labels and the evaluation.",
+  "description": "I work on the data, labels and evaluation that decide whether a medical AI model can be trusted.",
   "ogImage": "/assets/img/og-default.png",
   "links": {
     "linkedin": "https://www.linkedin.com/in/magnooj",
     "x": "https://x.com/magnooj",
     "github": "https://github.com/magnooj",
     "scholar": "https://scholar.google.com/citations?user=2t-nAsgAAAAJ"
-  }
+  },
+  "nav": [
+    { "label": "Writing", "url": "/blog/" },
+    { "label": "About", "url": "/about/" },
+    { "label": "Scholar", "url": "https://scholar.google.com/citations?user=2t-nAsgAAAAJ" },
+    { "label": "GitHub", "url": "https://github.com/magnooj" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/magnooj" }
+  ]
 }

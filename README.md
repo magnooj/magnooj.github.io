@@ -7,19 +7,26 @@ Built with [Eleventy](https://www.11ty.dev/). `main` holds the source; the built
 ## Write a new post
 
 1. Add a Markdown file to `src/blog/`, for example `src/blog/what-a-benchmark-cant-tell-you.md`. The file name becomes the URL.
-2. Start it with front matter:
+2. Start it with front matter (see `src/blog/the-model-is-not-the-hard-part.md` for a full example):
 
    ```yaml
    ---
    title: What a benchmark can't tell you
-   description: One sentence that appears in the post list and in link previews.
+   description: One sentence for search results and link previews.
+   dek: The longer standfirst under the title.
+   summary: Two sentences for the post card on the home and Writing pages.
    date: 2026-11-15
-   kicker: Essay
-   ogImage: /assets/img/blog/your-post/og.png   # optional, 1200 x 627
+   topic: Evaluating medical AI          # small caps line on the post card
+   labels: ["Evaluation"]                # tag pills; the Writing page filters on them
+   ogImage: /assets/img/blog/your-post/og.png   # 1200 x 627; also the post card thumbnail
    disclosure: I work at HOPPR, which builds AI for medical imaging. The views are my own.
-   draft: true                                  # optional; drafts are not published
+   toc:                                  # optional left-hand contents; ids match <section id="...">
+     - { id: "intro", n: "01", label: "Introduction" }
+   draft: true                           # optional; drafts are not published
    ---
    ```
+
+   Wrap each part in `<section id="...">` with a blank line after the opening tag and before `</section>`, and write the heading as `## <span class="n">01</span>Title`. Stat tiles, the TL;DR box, callouts and the figure styles (`hbars`, `flow`, `sysmap`, `insert`, `table.data`) are plain HTML classes from `src/assets/css/site.css`.
 
 3. Put images in `src/assets/img/blog/<post>/` and use them with `<figure><img src="..." alt="..."><figcaption>...</figcaption></figure>`.
 4. Run `npm run deploy` to build and publish (it needs the GitHub CLI, `gh`, logged in). Commit and push `main` too, so the source stays in sync.

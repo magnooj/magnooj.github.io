@@ -49,7 +49,7 @@ PILLARS = [
 CARDS = {}
 
 CARDS["00-cover"] = card(
-    "MedAI Summit 2026 · Talk notes",
+    "Talk notes · MedAI Summit 2026",
     "The model is not the hard part.",
     '<div class="pillars">' + "".join(
         f'<div class="pillar">{pill(i)}<div>{name}<small>{q}</small></div></div>'
@@ -159,18 +159,31 @@ CARDS["07-four-questions"] = card(
     '<p class="closing">None of them is about the model. <span>They’re clinical questions.</span></p>',
     source="One-page checklist and reading list: magnooj.github.io/medai-summit-2026")
 
+def ppv(p, sens=0.95, spec=0.95):
+    return sens * p / (sens * p + (1 - spec) * (1 - p))
+
+
+OG_ROWS = "".join(
+    f'<div class="r{" hot" if p == 0.01 else ""}"><span>{label}</span><div class="tr"><div style="width:{ppv(p) * 100:.1f}%"></div></div>'
+    f'<span class="v">{ppv(p) * 100:.0f}%</span></div>'
+    for p, label in ((0.01, "1 in 100"), (0.05, "1 in 20"), (0.10, "1 in 10"), (0.30, "3 in 10")))
+
 OG_POST = (
-    '<section class="og"><p class="kicker">Talk notes · MedAI Summit 2026</p>'
-    '<h1>The model is not the hard part</h1>'
-    '<p class="sub">Four questions for any medical AI tool, and why answering them takes clinical training more than code.</p>'
-    '<div class="chips">' + "".join(f'<span class="chip">{pill(i)}{n}</span>' for i, (n, _) in enumerate(PILLARS, 1)) + '</div>'
+    '<section class="og"><p class="kicker">Writing · Evaluating medical AI</p>'
+    '<div class="ogwrap"><div class="left"><h1>The model is not the hard part</h1>'
+    '<p class="sub">Four questions for any medical AI tool, and why answering them takes clinical training more than code.</p></div>'
+    '<div class="ogchart"><p class="ct">How often an alert is right</p>'
+    '<p class="cs">95% sensitive, 95% specific tool, by how many patients have the condition</p>'
+    f'{OG_ROWS}</div></div>'
     '<div class="ogfoot"><span class="who"><span class="mark">AG</span>Ali Ganjizadeh, MD, MBA</span><span class="url">magnooj.github.io</span></div></section>')
 
 OG_DEFAULT = (
-    '<section class="og"><p class="kicker">Medical AI · Data · Evaluation</p>'
-    '<h1>Ali Ganjizadeh, MD, MBA</h1>'
-    '<p class="sub">Writing on the parts of medical AI that decide whether a model can be trusted: the data, the labels and the evaluation.</p>'
-    '<div class="ogfoot" style="margin-top:auto"><span class="who"><span class="mark">AG</span>magnooj.github.io</span><span class="url">LinkedIn · X @magnooj</span></div></section>')
+    '<section class="og"><div class="ogwrap" style="grid-template-columns:1fr 150px"><div class="left">'
+    '<p class="kicker">Physician-scientist · Medical imaging AI</p>'
+    '<h1>Ali Ganjizadeh</h1>'
+    '<p class="sub">I work on the data, labels and evaluation that decide whether a medical AI model can be trusted.</p></div>'
+    f'<img class="photo" src="{(ROOT / "src/assets/img/ali.jpg").as_uri()}" alt=""></div>'
+    '<div class="ogfoot"><span class="who"><span class="mark">AG</span>magnooj.github.io</span><span class="url">MD, MBA · LinkedIn · X @magnooj</span></div></section>')
 
 
 def page(body, w, h):

@@ -16,7 +16,7 @@ export default function (eleventyConfig) {
           const last = inline.children[inline.children.length - 1];
           last.content = last.content.replace(/\s*\{#[\w-]+\}\s*$/, "");
         } else {
-          id = inline.content.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+          id = inline.content.replace(/<[^>]+>/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
         }
         toks[i].attrSet("id", id);
       }
@@ -33,7 +33,14 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("longDate", (d) =>
     `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`);
   eleventyConfig.addFilter("isoDate", (d) => d.toISOString());
+  const mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  eleventyConfig.addFilter("shortDate", (d) => `${d.getUTCDate()} ${mon[d.getUTCMonth()]} ${d.getUTCFullYear()}`);
   eleventyConfig.addFilter("head", (arr, n) => arr.slice(0, n));
+  eleventyConfig.addFilter("allLabels", (posts) => {
+    const counts = new Map();
+    for (const p of posts) for (const l of p.data.labels || []) counts.set(l, (counts.get(l) || 0) + 1);
+    return [...counts].map(([name, count]) => ({ name, count }));
+  });
   eleventyConfig.addShortcode("year", () => String(new Date().getFullYear()));
   eleventyConfig.addFilter("absoluteUrl", (path, base) => new URL(path, base).href);
   eleventyConfig.addFilter("readingTime", (html) => {
