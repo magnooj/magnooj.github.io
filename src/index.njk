@@ -2,52 +2,64 @@
 layout: layouts/base.njk
 ---
 <main class="main">
-  <section class="intro">
+  <section class="hero-home">
+    <img class="avatar" src="/assets/img/ali.jpg" alt="Portrait of Ali Ganjizadeh" width="116" height="116">
     <div>
-      <p class="kicker">Physician-scientist · Medical imaging AI</p>
-      <h1>Ali Ganjizadeh</h1>
-      <p class="dek">I work on the data, labels and evaluation that decide whether a medical AI model can be trusted.</p>
-      <p>MD, MBA. Senior Technical Product Manager at HOPPR, Research Collaborator at the Mayo Clinic Radiology AI &amp; Informatics Lab, and Vice Chair of the SIIM AI Education Committee.</p>
-      <ul class="pills">
-        <li><a class="primary" href="/blog/">Writing</a></li>
-        <li><a href="{{ site.links.scholar }}">Google Scholar</a></li>
-        <li><a href="{{ site.links.github }}">GitHub</a></li>
-        <li><a href="{{ site.links.linkedin }}">LinkedIn</a></li>
-        <li><a href="{{ site.links.x }}">X</a></li>
-      </ul>
+      <p class="eyebrow">Medical AI · Data · Evaluation</p>
+      <h1>Ali Ganjizadeh<span class="creds">, MD, MBA</span></h1>
+      <p class="tagline">Physician-scientist by training, engineer by practice, businessman at heart.</p>
     </div>
-    <img class="photo" src="/assets/img/ali.jpg" alt="Portrait of Ali Ganjizadeh" width="120" height="120">
   </section>
 
-  <section id="writing">
-    <h2 class="label">Writing <a href="/blog/">All posts →</a></h2>
-    <p class="section-sub">Notes on medical AI for clinicians and students: data, labels and evaluation.</p>
+  <section class="about-short">
+    <p>I work on the parts of medical AI that decide whether a model can be trusted: where the data came from, what the labels really mean, and how a model is evaluated before anyone relies on it.</p>
+    <p>I’m a Senior Technical Product Manager at <a href="https://hoppr.ai">HOPPR</a>, which builds foundation models for medical imaging, and a Research Collaborator at the Mayo Clinic Radiology AI &amp; Informatics Lab. I’m also Vice Chair of the SIIM AI Education Committee.</p>
+    <div class="actions">
+      <a class="btn" href="/blog/">Read the writing</a>
+      <a class="btn ghost" href="/about/">More about me</a>
+      <span class="social"><a href="{{ site.links.linkedin }}">LinkedIn</a><a href="{{ site.links.x }}">X</a><a href="{{ site.links.github }}">GitHub</a><a href="{{ site.links.scholar }}">Scholar</a></span>
+    </div>
+  </section>
+
+  <section class="block" id="writing">
+    <div class="block-head"><h2>Writing</h2><a href="/blog/">All posts →</a></div>
     {%- for post in collections.posts | head(3) %}
     {% include "partials/post-card.njk" %}
     {%- endfor %}
   </section>
 
-  <section id="talks">
-    <h2 class="label">Talks</h2>
-    <ol class="cv">
+  <section class="block" id="talks">
+    <div class="block-head"><h2>Talks</h2></div>
+    <ol class="timeline">
       {%- for talk in talks %}
-      <li><span class="when">{{ talk.date }}</span><span><b>{{ talk.title }}</b> <span class="org">· {{ talk.venue }}</span>
-        <span class="note">{% for link in talk.links %}{% if not loop.first %} · {% endif %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}</span></span></li>
+      <li class="now"><span class="when">{{ talk.date }} · {{ talk.venue }}</span><b>{{ talk.title }}</b>
+        <span class="note">{% for link in talk.links %}{% if not loop.first %} · {% endif %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}</span></li>
       {%- endfor %}
     </ol>
   </section>
 
-  <section id="experience">
-    <h2 class="label">Experience <a href="/about/">About me →</a></h2>
-    <ol class="cv">
-      <li><span class="when">Sep 2025 – now</span><span><b>Senior Technical Product Manager</b> <span class="org">· HOPPR</span>
-        <span class="note">Foundation models for medical imaging, across the data and model lifecycle.</span></span></li>
-      <li><span class="when">Jan 2025 – Sep 2025</span><span><b>Research Scientist</b> <span class="org">· HOPPR</span></span></li>
-      <li><span class="when">Jan 2025 – now</span><span><b>Research Collaborator</b> <span class="org">· Mayo Clinic, Radiology AI &amp; Informatics Lab</span></span></li>
-      <li><span class="when">Oct 2022 – Jan 2025</span><span><b>Postdoctoral Research Fellow</b> <span class="org">· Mayo Clinic, Radiology AI &amp; Informatics Lab</span>
-        <span class="note">Computer vision, language models and informatics for radiology research.</span></span></li>
-      <li><span class="when">Jan 2021 – Jul 2022</span><span><b>Product Manager</b> <span class="org">· Neuronio</span></span></li>
-      <li><span class="when">Nov 2020 – Jul 2022</span><span><b>Emergency Physician</b> <span class="org">· Susangerd General Hospital, Iran</span></span></li>
+  <section class="block" id="experience">
+    <div class="block-head"><h2>Experience</h2><a href="/about/">Full story →</a></div>
+    <ol class="timeline">
+      <li class="now"><span class="when">Sep 2025 – now</span><b>Senior Technical Product Manager</b> <span class="org">· HOPPR</span>
+        <span class="note">Foundation models for medical imaging, across the data and model lifecycle. Research Scientist from Jan 2025.</span></li>
+      <li class="now"><span class="when">Jan 2025 – now</span><b>Research Collaborator</b> <span class="org">· Mayo Clinic, Radiology AI &amp; Informatics Lab</span>
+        <span class="note">Postdoctoral Research Fellow, Oct 2022 to Jan 2025: computer vision, language models and informatics for radiology research.</span></li>
+      <li><span class="when">Jan 2021 – Jul 2022</span><b>Product Manager</b> <span class="org">· Neuronio</span></li>
+      <li><span class="when">Nov 2020 – Jul 2022</span><b>Emergency Physician</b> <span class="org">· Susangerd General Hospital, Iran</span></li>
+    </ol>
+  </section>
+
+  <section class="block" id="papers">
+    <div class="block-head"><h2>Papers</h2><a href="{{ site.links.scholar }}">Google Scholar →</a></div>
+    <ol class="papers">
+      {%- for p in papers %}
+      <li><div>
+        <p class="pt"><a href="{{ p.url }}">{{ p.title }}</a></p>
+        <p class="pa">{{ p.authors | safe }}</p>
+        <p class="pv"><i>{{ p.venue }}</i>, {{ p.year }}</p>
+      </div></li>
+      {%- endfor %}
     </ol>
   </section>
 </main>

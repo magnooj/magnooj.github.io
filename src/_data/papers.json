@@ -1,0 +1,37 @@
+[
+  {
+    "title": "RadEval: a framework for radiology text evaluation",
+    "authors": "Xu J, …, <b>Ganjizadeh A</b>, et al.",
+    "venue": "EMNLP 2025, System Demonstrations",
+    "year": "2025",
+    "url": "https://doi.org/10.18653/v1/2025.emnlp-demos.40"
+  },
+  {
+    "title": "RIDGE: reproducibility, integrity, dependability, generalizability, and efficiency assessment of medical image segmentation models",
+    "authors": "Maleki F, …, <b>Ganjizadeh A</b>, et al.",
+    "venue": "Journal of Imaging Informatics in Medicine",
+    "year": "2025",
+    "url": "https://doi.org/10.1007/s10278-024-01282-9"
+  },
+  {
+    "title": "Decoding large language models for radiology: strategies for fine-tuning and prompt engineering",
+    "authors": "Vahdati S, Mahmoudi E, <b>Ganjizadeh A</b>, Chao C, Erickson BJ",
+    "venue": "Radiology Advances",
+    "year": "2025",
+    "url": "https://doi.org/10.1093/radadv/umaf024"
+  },
+  {
+    "title": "From pixels to prognosis: AI-driven insights into neurodegenerative diseases",
+    "authors": "<b>Ganjizadeh A</b>, Wei Y, Erickson BJ",
+    "venue": "Medical Research Archives",
+    "year": "2024",
+    "url": "https://doi.org/10.18103/mra.v12i6.5512"
+  },
+  {
+    "title": "Visualizing clinical data retrieval and curation in multimodal healthcare AI research: a technical note on RIL-workflow",
+    "authors": "<b>Ganjizadeh A</b>, Zawada SJ, Langer SG, Erickson BJ",
+    "venue": "Journal of Imaging Informatics in Medicine",
+    "year": "2024",
+    "url": "https://doi.org/10.1007/s10278-024-00977-3"
+  }
+]

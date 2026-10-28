@@ -20,7 +20,7 @@ OUT = GFX / "out"
 BLOG_IMG = ROOT / "src/assets/img/blog/model-not-hard-part"
 SITE_IMG = ROOT / "src/assets/img"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">'
+FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">'
 
 
 def foot(right="magnooj.github.io", swipe=False):
@@ -179,11 +179,11 @@ OG_POST = (
 
 OG_DEFAULT = (
     '<section class="og"><div class="ogwrap" style="grid-template-columns:1fr 150px"><div class="left">'
-    '<p class="kicker">Physician-scientist · Medical imaging AI</p>'
-    '<h1>Ali Ganjizadeh</h1>'
-    '<p class="sub">I work on the data, labels and evaluation that decide whether a medical AI model can be trusted.</p></div>'
+    '<p class="kicker">Medical AI · Data · Evaluation</p>'
+    '<h1>Ali Ganjizadeh, MD, MBA</h1>'
+    '<p class="sub">Physician-scientist by training, engineer by practice, businessman at heart. Writing on the data, labels and evaluation behind medical AI.</p></div>'
     f'<img class="photo" src="{(ROOT / "src/assets/img/ali.jpg").as_uri()}" alt=""></div>'
-    '<div class="ogfoot"><span class="who"><span class="mark">AG</span>magnooj.github.io</span><span class="url">MD, MBA · LinkedIn · X @magnooj</span></div></section>')
+    '<div class="ogfoot"><span class="who"><span class="mark">AG</span>magnooj.github.io</span><span class="url">LinkedIn · X @magnooj</span></div></section>')
 
 
 def page(body, w, h):

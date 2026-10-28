@@ -14,7 +14,7 @@ topLinks:
   - { label: "Checklist (PDF)", url: "https://magnooj.github.io/medai-summit-2026/four-questions-checklist.pdf" }
   - { label: "LinkedIn", url: "https://www.linkedin.com/in/magnooj" }
 toc:
-  - { id: "tldr", n: "·", label: "TL;DR" }
+  - { id: "tldr", n: "·", label: "In short" }
   - { id: "small-box", n: "01", label: "The small box" }
   - { id: "provenance", n: "02", label: "Data provenance" }
   - { id: "label", n: "03", label: "Label definition" }
@@ -32,7 +32,7 @@ toc:
 </div>
 
 <section id="tldr" class="tldr">
-<span class="lbl">TL;DR</span>
+<span class="lbl">In short</span>
 <ul>
 <li><strong>The model is the small part.</strong> Most of what decides whether a medical AI tool helps patients sits around the model: where the data came from, what the label means and how the tool was evaluated. Those are clinical questions.</li>
 <li><strong>Ask where the data came from.</strong> A commercial melanoma AI lost much of its specificity when benign moles carried surgical ink. Dermatologists knew why the ink was there.</li>
@@ -70,7 +70,7 @@ Everything else in this post is clinical.
 <div class="b edge" style="grid-column:1/5;grid-row:5/7">Evaluation<small>What a PPV means at the bedside</small></div>
 <div class="b ops" style="grid-column:5/7;grid-row:5/7">Governance</div>
 </div>
-<div class="legend"><span><i class="sw-line"></i>where a physician has the edge</span><span><i class="sw-frozen"></i>engineering and operations</span><span><i class="sw-emph"></i>the model</span></div>
+<div class="legend"><span><i class="sw-line"></i>where a physician has the edge</span><span><i class="sw-frozen"></i>engineering and operations</span><span><i class="sw-ink"></i>the model</span></div>
 <figcaption><b>Figure 1. The model is the small box.</b> In a real machine-learning system, the model code is a small part of the whole. After <a href="https://proceedings.neurips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html">Sculley et al., NeurIPS 2015</a>; the clinical labels are mine.</figcaption>
 </figure>
 

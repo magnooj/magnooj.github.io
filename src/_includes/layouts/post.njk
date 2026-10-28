@@ -1,29 +1,27 @@
 ---
 layout: layouts/base.njk
-crumb: { label: "Writing", url: "/blog/" }
 ---
 {%- set postUrl = page.url | absoluteUrl(site.url) %}
-<header class="hero">
-  <div class="in">
-    <p class="kicker">Writing · {{ topic }}</p>
+<main class="post-wrap">
+  <header class="post-head">
+    <p class="eyebrow"><a href="/blog/" style="text-decoration:none">Writing</a> · {{ topic }}</p>
     <h1>{{ title }}</h1>
     <p class="dek">{{ dek or description }}</p>
-    <div class="post-meta">
-      {%- if talk %}<p><b>Talk</b> {{ talk | safe }}</p>{% endif %}
-      <p class="row">
-        <span><b>By</b> <a href="/about/">{{ site.author }}</a></span>
-        <span><b>Published</b> {{ page.date | shortDate }}</span>
-        <span><b>Reading time</b> ~{{ content | readingTime | replace(" read", "") }}</span>
-        {%- if labels %}<span><b>Tags</b> {% for l in labels %}{% if not loop.first %} · {% endif %}<a href="/blog/?tag={{ l | slugify }}">{{ l }}</a>{% endfor %}</span>{% endif %}
-      </p>
-      {%- if disclosure %}<p><b>Disclosure</b> {{ disclosure }}</p>{% endif %}
+    <div class="byline">
+      <img src="/assets/img/ali.jpg" alt="" width="38" height="38">
+      <span><a href="/about/"><b>{{ site.author }}</b></a></span>
+      <span>·</span><time datetime="{{ page.date | isoDate }}">{{ page.date | longDate }}</time>
+      <span>·</span><span>~{{ content | readingTime }}</span>
     </div>
-  </div>
-</header>
-<main class="page">
+    <div class="post-note">
+      {%- if talk %}<p><b>Talk</b> {{ talk | safe }}</p>{% endif %}
+      {%- if disclosure %}<p><b>Disclosure</b> {{ disclosure }}</p>{% endif %}
+      {%- if labels %}<p><b>Tags</b> <span class="chips">{% for l in labels %}<a class="chip" href="/blog/?tag={{ l | slugify }}">{{ l }}</a>{% endfor %}</span></p>{% endif %}
+    </div>
+  </header>
   {%- if toc %}
-  <nav class="toc" aria-label="Contents">
-    <p class="h">Contents</p>
+  <nav class="toc" aria-label="On this page">
+    <p class="h">On this page</p>
     <ol>
       {%- for t in toc %}
       <li><a href="#{{ t.id }}"><span>{{ t.n }}</span>{{ t.label }}</a></li>

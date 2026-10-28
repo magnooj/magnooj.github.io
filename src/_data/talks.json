@@ -4,8 +4,14 @@
     "venue": "2nd MedAI Summit (online)",
     "title": "The Model Is Not the Hard Part: The Clinical Foundations of Medical AI",
     "links": [
-      { "label": "Talk notes", "url": "/blog/the-model-is-not-the-hard-part/" },
-      { "label": "One-page checklist", "url": "https://magnooj.github.io/medai-summit-2026/" }
+      {
+        "label": "Talk notes",
+        "url": "/blog/the-model-is-not-the-hard-part/"
+      },
+      {
+        "label": "One-page checklist",
+        "url": "https://magnooj.github.io/medai-summit-2026/"
+      }
     ]
   }
 ]

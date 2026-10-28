@@ -1,8 +1,8 @@
-<article class="post-card" data-tags="{% for l in post.data.labels %}{{ l | slugify }} {% endfor %}">
-  <a class="thumb" href="{{ post.url }}" tabindex="-1" aria-hidden="true"><img src="{{ post.data.ogImage }}" alt="" width="1200" height="627" loading="lazy"></a>
-  <div class="body">
-    <p class="meta"><span class="k">{{ post.data.topic }}</span>{% for l in post.data.labels %}<a class="tag" href="/blog/?tag={{ l | slugify }}">{{ l }}</a>{% endfor %}<span>{{ post.date | shortDate }}</span><span>~{{ post.content | readingTime }}</span></p>
+<article class="entry" data-tags="{% for l in post.data.labels %}{{ l | slugify }} {% endfor %}">
+  <div>
+    <p class="entry-meta"><time datetime="{{ post.date | isoDate }}">{{ post.date | shortDate }}</time><span>·</span><span>~{{ post.content | readingTime }}</span>{% for l in post.data.labels %}<a class="chip" href="/blog/?tag={{ l | slugify }}">{{ l }}</a>{% endfor %}</p>
     <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-    <p class="sum">{{ post.data.summary or post.data.description }}</p>
+    <p class="entry-sum">{{ post.data.summary or post.data.description }}</p>
   </div>
+  <a class="entry-thumb" href="{{ post.url }}" tabindex="-1" aria-hidden="true"><img src="{{ post.data.ogImage }}" alt="" width="1200" height="627" loading="lazy"></a>
 </article>

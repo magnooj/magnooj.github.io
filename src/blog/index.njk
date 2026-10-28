@@ -3,27 +3,27 @@ layout: layouts/base.njk
 title: Writing
 description: Notes on medical AI for clinicians and students, on data, labels and evaluation.
 permalink: /blog/
-crumb: { label: "Writing", url: "/blog/" }
 ---
 <main class="main">
-  <h1>Writing</h1>
-  <p class="dek">Notes on medical AI for clinicians and students, on the data, labels and evaluation that decide whether a model can be trusted.</p>
-  <ul class="pills" id="filters">
+  <header class="page-head">
+    <p class="eyebrow">Writing</p>
+    <h1>Notes on medical AI</h1>
+    <p class="dek">For clinicians and students: the data, labels and evaluation that decide whether a model can be trusted.</p>
+  </header>
+  <ul class="tabs" id="filters">
     <li><button type="button" data-tag="" aria-pressed="true">All<span class="count">{{ collections.posts.length }}</span></button></li>
     {%- for label in collections.posts | allLabels %}
     <li><button type="button" data-tag="{{ label.name | slugify }}" aria-pressed="false">{{ label.name }}<span class="count">{{ label.count }}</span></button></li>
     {%- endfor %}
   </ul>
-  <div class="post-list-head">
-    {%- for post in collections.posts %}
-    {% include "partials/post-card.njk" %}
-    {%- endfor %}
-  </div>
+  {%- for post in collections.posts %}
+  {% include "partials/post-card.njk" %}
+  {%- endfor %}
 </main>
 <script>
 (() => {
   const buttons = [...document.querySelectorAll("#filters button")];
-  const cards = [...document.querySelectorAll(".post-card")];
+  const cards = [...document.querySelectorAll(".entry")];
   const apply = (tag) => {
     buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tag === tag)));
     cards.forEach((c) => { c.hidden = tag && !c.dataset.tags.split(" ").includes(tag); });
