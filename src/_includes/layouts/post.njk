@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+---
+{%- set postUrl = page.url | absoluteUrl(site.url) %}
+<article class="wrap post">
+  <header class="post-header">
+    <p class="kicker">{{ kicker or "Essay" }}</p>
+    <h1>{{ title }}</h1>
+    {%- if description %}<p class="dek">{{ description }}</p>{% endif %}
+    <p class="byline">
+      <span>{{ site.author }}</span>
+      <span aria-hidden="true">·</span>
+      <time datetime="{{ page.date | isoDate }}">{{ page.date | longDate }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{{ content | readingTime }}</span>
+    </p>
+  </header>
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+  <footer class="post-footer">
+    {%- if disclosure %}
+    <p class="disclosure"><strong>Disclosure.</strong> {{ disclosure }}</p>
+    {%- endif %}
+    <p class="share">
+      Share:
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ postUrl | urlencode }}">LinkedIn</a>
+      <a href="https://x.com/intent/post?url={{ postUrl | urlencode }}&text={{ title | urlencode }}&via=magnooj">X</a>
+    </p>
+    <p><a href="/blog/">← All writing</a></p>
+  </footer>
+</article>

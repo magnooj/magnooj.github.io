@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: Writing
+description: Essays by Ali Ganjizadeh on medical AI, data, labels and evaluation.
+permalink: /blog/
+---
+<section class="wrap section">
+  <header class="post-header">
+    <p class="kicker">Writing</p>
+    <h1>Notes on medical AI</h1>
+    <p class="dek">On data, labels and evaluation: the parts of medical AI that decide whether a model can be trusted.</p>
+  </header>
+  <ul class="post-list">
+    {%- for post in collections.posts %}
+    <li>
+      <a href="{{ post.url }}">
+        <span class="post-title">{{ post.data.title }}</span>
+        <span class="post-dek">{{ post.data.description }}</span>
+        <time datetime="{{ post.date | isoDate }}">{{ post.date | longDate }}</time>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>

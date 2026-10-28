@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- set pageTitle = (title + " · " + site.title) if title and page.url != "/" else site.title + ", MD, MBA" %}
+  {%- set pageDescription = description or site.description %}
+  {%- set pageImage = (ogImage or site.ogImage) | absoluteUrl(site.url) %}
+  {%- set pageUrl = page.url | absoluteUrl(site.url) %}
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  <meta name="author" content="{{ site.author }}">
+  <link rel="canonical" href="{{ pageUrl }}">
+  <meta property="og:type" content="{{ 'article' if layout == 'layouts/post.njk' else 'website' }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ title or site.author }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:image" content="{{ pageImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  {%- if ogImageAlt %}<meta property="og:image:alt" content="{{ ogImageAlt }}">{% endif %}
+  {%- if layout == 'layouts/post.njk' %}
+  <meta property="article:published_time" content="{{ page.date | isoDate }}">
+  <meta property="article:author" content="{{ site.links.linkedin }}">
+  {%- endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@magnooj">
+  <meta name="twitter:creator" content="@magnooj">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="/" aria-label="Home">
+        <span class="mark" aria-hidden="true">AG</span>
+        <span class="brand-name">Ali Ganjizadeh</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="/blog/"{% if page.url.startsWith('/blog/') %} aria-current="page"{% endif %}>Writing</a>
+        <a href="/about/"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p>© {% year %} {{ site.author }}. Views are my own, not my employer’s.</p>
+      <p class="social">
+        <a href="{{ site.links.linkedin }}">LinkedIn</a>
+        <a href="{{ site.links.x }}">X</a>
+        <a href="{{ site.links.github }}">GitHub</a>
+        <a href="{{ site.links.scholar }}">Scholar</a>
+        <a href="/feed.xml">RSS</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

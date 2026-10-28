@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+title: About
+description: Ali Ganjizadeh, MD, MBA. Physician-scientist and technical product manager in medical-imaging AI.
+permalink: /about/
+---
+<article class="wrap about">
+  <header class="post-header">
+    <p class="kicker">About</p>
+    <h1>I build and evaluate AI for medical imaging, and I keep asking whether the result is real.</h1>
+  </header>
+
+  <div class="prose">
+    <p>Today I’m a Senior Technical Product Manager at <a href="https://hoppr.ai">HOPPR</a>, which builds foundation models for medical imaging. I work across the whole life of a model: where the data comes from, how it is de-identified, curated and labeled, what the model is asked to predict, and how it is trained, evaluated and deployed. I joined HOPPR as a research scientist in January 2025 and moved into product that September.</p>
+
+    <p>Evaluation is the center of my work. I build the systems that grade a model’s work, including automated graders and LLM-as-judge methods (where one AI model scores another), grounded in how clinicians actually judge a result, and I’ve contributed to published work on measuring medical AI, such as <a href="https://doi.org/10.18653/v1/2025.emnlp-demos.40">RadEval</a> and <a href="https://doi.org/10.1007/s10278-024-01282-9">RIDGE</a>. I’ve also learned not to trust a good score until I know what the model actually saw: I once traced a model’s quiet loss of accuracy to a preprocessing step that flattened the image intensities a radiologist reads.</p>
+
+    <p>Before HOPPR I was a postdoctoral research fellow at the Mayo Clinic Radiology AI &amp; Informatics Lab, where I still collaborate. I built tools that let researchers pull and curate imaging data for themselves, a grant-funded model for detecting prostate cancer recurrence on MRI, and language-model pipelines for extracting data from clinical reports.</p>
+
+    <p>I earned my MD at Tehran University of Medical Sciences, then worked as an emergency physician at Susangerd General Hospital in Khuzestan, Iran. Over the same period I was product manager at Neuronio, where we moved an FDA-cleared dementia-screening product from neurology clinics into primary care and grew its revenue sixfold. I also hold an MBA in data science and business analytics.</p>
+
+    <p>While in medical school I co-founded ventures in health and medical education, including a healthcare product consultancy that ran due diligence for investors, and a public-health school run as a policy simulation, which received the AMEE Patil Innovation in Teaching Award.</p>
+
+    <p>I’m Vice Chair of the AI Education Committee at the Society for Imaging Informatics in Medicine (SIIM), and I help develop AI standards guidelines with Integrating the Healthcare Enterprise (IHE), an initiative RSNA co-founded. I enjoy teaching clinicians and students how to judge an AI tool. Away from a screen, I’m usually on a mountain bike.</p>
+  </div>
+
+  <section class="cv" aria-labelledby="experience">
+    <h2 id="experience">Experience</h2>
+    <dl class="timeline">
+      <dt>2025 to now</dt>
+      <dd><strong>HOPPR</strong><span>Senior Technical Product Manager (since Sep 2025); Research Scientist (Jan to Sep 2025)</span></dd>
+      <dt>2022 to now</dt>
+      <dd><strong>Mayo Clinic, Radiology AI &amp; Informatics Lab</strong><span>Research Collaborator (since 2025); Postdoctoral Research Fellow (2022 to 2025)</span></dd>
+      <dt>2021 to 2022</dt>
+      <dd><strong>Neuronio</strong><span>Product Manager</span></dd>
+      <dt>2020 to 2022</dt>
+      <dd><strong>Susangerd General Hospital, Iran</strong><span>Emergency Physician</span></dd>
+      <dt>2014 to 2020</dt>
+      <dd><strong>Ventures in health and medical education</strong><span>Co-founder of AVECEN (healthcare product consulting), IRAN International Public Health School, MedLean and REDXIR</span></dd>
+    </dl>
+
+    <h2 id="education">Education</h2>
+    <dl class="timeline">
+      <dt>2022</dt>
+      <dd><strong>MBA, Data Science &amp; Business Analytics</strong><span>Industrial Management Institute, Tehran</span></dd>
+      <dt>2020</dt>
+      <dd><strong>MD, Doctor of Medicine</strong><span>Tehran University of Medical Sciences</span></dd>
+    </dl>
+
+    <h2 id="service">Service</h2>
+    <ul class="plain">
+      <li><strong>Society for Imaging Informatics in Medicine (SIIM)</strong>, Vice Chair, AI Education Committee (since 2023)</li>
+      <li><strong>Radiological Society of North America (RSNA)</strong>, Member, Integrating the Healthcare Enterprise (IHE), developing AI standards guidelines (since 2023)</li>
+    </ul>
+
+    <h2 id="publications">Selected publications</h2>
+    <ul class="plain pubs">
+      <li>Xu J, …, <strong>Ganjizadeh A</strong>, et al. <a href="https://doi.org/10.18653/v1/2025.emnlp-demos.40">RadEval: a framework for radiology text evaluation.</a> <em>EMNLP 2025, System Demonstrations.</em></li>
+      <li>Maleki F, …, <strong>Ganjizadeh A</strong>, et al. <a href="https://doi.org/10.1007/s10278-024-01282-9">RIDGE: reproducibility, integrity, dependability, generalizability, and efficiency assessment of medical image segmentation models.</a> <em>Journal of Imaging Informatics in Medicine, 2025.</em></li>
+      <li>Vahdati S, Mahmoudi E, <strong>Ganjizadeh A</strong>, Chao C, Erickson BJ. <a href="https://doi.org/10.1093/radadv/umaf024">Decoding large language models for radiology: strategies for fine-tuning and prompt engineering.</a> <em>Radiology Advances, 2025.</em></li>
+      <li><strong>Ganjizadeh A</strong>, Wei Y, Erickson BJ. <a href="https://doi.org/10.18103/mra.v12i6.5512">From pixels to prognosis: AI-driven insights into neurodegenerative diseases.</a> <em>Medical Research Archives, 2024.</em></li>
+      <li><strong>Ganjizadeh A</strong>, Zawada SJ, Langer SG, Erickson BJ. <a href="https://doi.org/10.1007/s10278-024-00977-3">Visualizing clinical data retrieval and curation in multimodal healthcare AI research: a technical note on RIL-workflow.</a> <em>Journal of Imaging Informatics in Medicine, 2024.</em></li>
+    </ul>
+    <p class="more"><a href="{{ site.links.scholar }}">All publications on Google Scholar</a></p>
+
+    <h2 id="honors">Selected honors</h2>
+    <ul class="plain">
+      <li>Radiology Research Executive Committee Grant, Mayo Clinic (2024), for automated detection of prostate cancer recurrence</li>
+      <li>Best Student Project Award, 7th World Health Summit Regional Meeting (2019)</li>
+      <li>UNAIDS Developmental Grant (2018), for REDXIR, a course to reduce stigma in healthcare</li>
+      <li>Patil Innovation in Teaching Award, Association for Medical Education in Europe (2018)</li>
+    </ul>
+
+    <h2 id="contact">Get in touch</h2>
+    <p>The best way to reach me is a message on <a href="{{ site.links.linkedin }}">LinkedIn</a> or <a href="{{ site.links.x }}">X (@magnooj)</a>.</p>
+  </section>
+</article>

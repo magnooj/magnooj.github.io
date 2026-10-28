@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+---
+<section class="wrap hero">
+  <p class="kicker">Medical AI · Data · Evaluation</p>
+  <h1>Ali Ganjizadeh, <span class="creds">MD, MBA</span></h1>
+  <p class="lead">Physician-scientist by training, engineer by practice, businessman at heart.</p>
+  <p>I work on the parts of medical AI that decide whether a model can be trusted: where the data came from, what the labels really mean, and how a model is evaluated before anyone relies on it.</p>
+  <p>I’m a Senior Technical Product Manager at <a href="https://hoppr.ai">HOPPR</a>, which builds foundation models for medical imaging, and a Research Collaborator at the Mayo Clinic Radiology AI &amp; Informatics Lab. I’m also Vice Chair of the SIIM AI Education Committee.</p>
+  <p class="cta"><a class="button" href="/blog/">Read the writing</a> <a class="button ghost" href="/about/">More about me</a></p>
+</section>
+
+<section class="wrap section" aria-labelledby="latest">
+  <h2 id="latest">Latest writing</h2>
+  <ul class="post-list">
+    {%- for post in collections.posts | head(5) %}
+    <li>
+      <a href="{{ post.url }}">
+        <span class="post-title">{{ post.data.title }}</span>
+        <span class="post-dek">{{ post.data.description }}</span>
+        <time datetime="{{ post.date | isoDate }}">{{ post.date | longDate }}</time>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="wrap section" aria-labelledby="talks">
+  <h2 id="talks">Talks</h2>
+  <ul class="talk-list">
+    {%- for talk in talks %}
+    <li>
+      <p class="talk-meta"><time>{{ talk.date }}</time> · {{ talk.venue }}</p>
+      <p class="talk-title">{{ talk.title }}</p>
+      <p class="talk-links">
+        {%- for link in talk.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% endfor %}
+      </p>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>

@@ -1,0 +1,15 @@
+{
+  "name": "magnooj.github.io",
+  "private": true,
+  "description": "Personal site and blog of Ali Ganjizadeh, MD, MBA",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "graphics": "python3 graphics/render.py",
+    "deploy": "sh scripts/deploy.sh"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6"
+  }
+}
