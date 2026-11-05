@@ -100,6 +100,13 @@ a.chip:hover { background: #d3ebe7; }
 .timeline .org { color: var(--ink-2); }
 .timeline .note { display: block; color: var(--ink-3); font-size: 14px; margin-top: 2px; }
 .timeline .note a { color: var(--ink-2); }
+/* Several roles at one organization: the organization carries the full span, each role its own dates. */
+.timeline .roles { list-style: none; margin: 8px 0 0; padding: 0; }
+.timeline .roles li { padding: 0 0 6px 16px; }
+.timeline .roles li:last-child { padding-bottom: 0; }
+.timeline .roles li::before { left: 0; top: 9px; width: 7px; height: 7px; border: 0; background: var(--rule-2); }
+.timeline .roles li.cur::before { background: var(--teal); }
+.timeline .roles .dates { font-size: 13px; color: var(--ink-4); white-space: nowrap; margin-left: 4px; }
 
 /* Papers */
 .papers { list-style: none; counter-reset: p; margin: 8px 0 0; padding: 0; }
