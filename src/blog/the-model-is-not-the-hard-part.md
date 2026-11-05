@@ -6,6 +6,8 @@ summary: A melanoma AI that learned surgical ink, a cost label that missed need,
 date: 2026-10-28
 topic: Evaluating medical AI
 labels: ["MedAI Summit 2026", "Evaluation"]
+series: clinical-foundations
+part: 0
 talk: "<i>The Model Is Not the Hard Part: The Clinical Foundations of Medical AI.</i> 2nd MedAI Summit (online), 28 October 2026. <a href=\"https://magnooj.github.io/medai-summit-2026/\">One-page checklist</a>"
 ogImage: /assets/img/blog/model-not-hard-part/og.png
 ogImageAlt: "The model is not the hard part: four questions for any medical AI tool, with a chart of how often an alert is right at different prevalences."

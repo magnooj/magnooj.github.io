@@ -1,3 +1,5 @@
+import { isLive, now, publishAt, showDrafts } from "./lib/publish.js";
+
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.amendLibrary("md", (md) => {
@@ -24,12 +26,48 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addPassthroughCopy({ "src/.nojekyll": ".nojekyll" });
 
-  eleventyConfig.addCollection("posts", (api) =>
-    api.getFilteredByGlob("src/blog/*.md").filter((p) => !p.data.draft).reverse()
+  // Only live posts are listed (see lib/publish.js). DRAFTS=1 (npm run preview) lists drafts and
+  // scheduled posts too, for review; deploys never do.
+  const live = new Set(); // slugs of live posts
+  const scheduled = new Map(); // slug -> date, for approved posts that go live later
+  eleventyConfig.addCollection("posts", (api) => {
+    const all = api.getFilteredByGlob("src/blog/*.md");
+    live.clear();
+    scheduled.clear();
+    for (const p of all) {
+      if (isLive(p.data)) live.add(p.page.fileSlug);
+      else if (!p.data.draft) scheduled.set(p.page.fileSlug, p.date);
+    }
+    return all.filter((p) => live.has(p.page.fileSlug)).reverse();
+  });
+  // Posts in a series, in reading order (part 0 is the overview). Scheduled parts are included
+  // without a link, so readers see what comes next; drafts are left out.
+  eleventyConfig.addCollection("series", (api) =>
+    api.getFilteredByGlob("src/blog/*.md")
+      .filter((p) => p.data.series && (showDrafts || !p.data.draft))
+      .sort((a, b) => a.data.part - b.data.part)
   );
+  eleventyConfig.addFilter("seriesNext", (items, url) => {
+    const i = items.findIndex((p) => p.url === url);
+    return i < 0 ? null : items[i + 1] || null;
+  });
+  // A link to a post that is not live yet becomes plain text until the post goes live,
+  // so a post can mention later parts without sending readers to a missing page.
+  eleventyConfig.addTransform("pending-links", function (content) {
+    if (!this.page.outputPath || !this.page.outputPath.endsWith(".html")) return content;
+    return content.replace(/<a href="\/blog\/([a-z0-9-]+)\/[^"]*"[^>]*>([\s\S]*?)<\/a>/g, (m, slug, text) => {
+      if (live.has(slug)) return m;
+      const when = scheduled.has(slug) ? `Coming ${dayMonth(scheduled.get(slug))}` : "Coming soon";
+      return `<span class="pending-link" title="${when}">${text}</span>`;
+    });
+  });
 
   const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
+  const dayMonth = (d) => `${d.getUTCDate()} ${months[d.getUTCMonth()]}`;
+  eleventyConfig.addFilter("dayMonth", dayMonth);
+  // "10 November" while a post is scheduled for later, "" once it is live.
+  eleventyConfig.addFilter("goesLive", (d) => (publishAt(d) > now ? dayMonth(d) : ""));
   eleventyConfig.addFilter("longDate", (d) =>
     `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`);
   eleventyConfig.addFilter("isoDate", (d) => d.toISOString());

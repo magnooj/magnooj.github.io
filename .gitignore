@@ -3,3 +3,4 @@ _site/
 .DS_Store
 graphics/out/
 __pycache__/
+_preview/

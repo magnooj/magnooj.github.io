@@ -1,0 +1,48 @@
+# Builds the site and publishes it to GitHub Pages.
+# Runs on every push to main, by hand (Actions tab > Build and deploy > Run workflow, or npm run deploy),
+# and every morning, so posts with a future `date` go live on that date by themselves (see lib/publish.js).
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Posts go live from 11:00 UTC (6 am New York in winter). Two runs, in case GitHub starts one late.
+    - cron: "17 11 * * *"
+    - cron: "47 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: ls _site/blog
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

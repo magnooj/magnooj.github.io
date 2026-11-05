@@ -2,8 +2,8 @@
 
 Usage: python3 graphics/render.py [--linkedin-dir DIR]
 
-Needs Google Chrome and Pillow. Blog images (1080x1350) and Open Graph images
-(1200x627) are written into src/assets/img/. The 2x LinkedIn images and the
+Needs Google Chrome and Pillow. Open Graph images (1200x627) are written into
+src/assets/img/; the cards are not published on the site. The 2x LinkedIn images and the
 carousel PDF go to --linkedin-dir (default graphics/out/linkedin, not committed).
 """
 import argparse
@@ -225,8 +225,6 @@ def main():
             html.write_text(page(body, 1080, 1350))
             big = li / f"{name}.png"
             shot(html, big, 1080, 1350, profile)
-            if name != "00-cover":
-                downscale(big, BLOG_IMG / f"{name}.png", 1080, 1350)
             print("rendered", name, Image.open(big).size)
         deck = OUT / "html" / "carousel.html"
         deck.write_text(page("".join(CARDS.values()), 1080, 1350))

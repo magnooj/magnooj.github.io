@@ -2,7 +2,7 @@
 
 Personal site and blog of Ali Ganjizadeh, MD, MBA: https://magnooj.github.io
 
-Built with [Eleventy](https://www.11ty.dev/). `main` holds the source; the built site is published to the `gh-pages` branch, which GitHub Pages serves.
+Built with [Eleventy](https://www.11ty.dev/). `main` holds the source. GitHub Actions (`.github/workflows/deploy.yml`) builds it and publishes it to GitHub Pages on every push to `main` and every morning, so scheduled posts go live on their date.
 
 ## Write a new post
 
@@ -22,14 +22,24 @@ Built with [Eleventy](https://www.11ty.dev/). `main` holds the source; the built
    disclosure: I work at HOPPR, which builds AI for medical imaging. The views are my own.
    toc:                                  # optional left-hand contents; ids match <section id="...">
      - { id: "intro", n: "01", label: "Introduction" }
-   draft: true                           # optional; drafts are not published
+   draft: true                           # optional; drafts are never published
    ---
    ```
 
    Wrap each part in `<section id="...">` with a blank line after the opening tag and before `</section>`, and write the heading as `## <span class="n">01</span>Title`. Stat tiles, the TL;DR box, callouts and the figure styles (`hbars`, `flow`, `sysmap`, `insert`, `table.data`) are plain HTML classes from `src/assets/css/site.css`.
 
 3. Put images in `src/assets/img/blog/<post>/` and use them with `<figure><img src="..." alt="..."><figcaption>...</figcaption></figure>`.
-4. Run `npm run deploy` to build and publish (it needs the GitHub CLI, `gh`, logged in). Commit and push `main` too, so the source stays in sync.
+4. Commit and push to `main`. GitHub Actions publishes the site in about two minutes.
+
+## Schedule a post
+
+A post goes live at 6 am New York time (11:00 UTC) on its `date`. Give it a future `date`, remove `draft: true`, then commit and push: it stays hidden until that morning, when the daily build publishes it. Until then, links to it from other posts show as plain text, and the series box lists it as "coming 17 November".
+
+- `npm run preview` shows drafts and scheduled posts at http://localhost:8090, for review only.
+- `NOW=2026-11-17T12:00Z npm run build` builds the site as it will look at that time.
+- `npm run deploy` starts the publish workflow by hand (needs the GitHub CLI, `gh`), for example if a scheduled run is late. It publishes what is on `main`.
+
+Note that the source of a scheduled post is readable in this public repository before it goes live. Keep unapproved drafts out of `main`.
 
 ## Run it locally
 

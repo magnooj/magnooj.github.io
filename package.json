@@ -6,6 +6,7 @@
   "scripts": {
     "build": "eleventy",
     "start": "eleventy --serve",
+    "preview": "DRAFTS=1 eleventy --serve --port=8090 --output=_preview",
     "graphics": "python3 graphics/render.py",
     "deploy": "sh scripts/deploy.sh"
   },

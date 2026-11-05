@@ -16,8 +16,23 @@ layout: layouts/base.njk
     <div class="post-note">
       {%- if talk %}<p><b>Talk</b> {{ talk | safe }}</p>{% endif %}
       {%- if disclosure %}<p><b>Disclosure</b> {{ disclosure }}</p>{% endif %}
+      {%- if draft %}<p><b>Draft</b> Preview only. Not published. Planned for {{ page.date | longDate }}.</p>
+      {%- elif page.date | goesLive %}<p><b>Scheduled</b> Goes live on {{ page.date | goesLive }}, 6 am New York time.</p>{% endif %}
       {%- if labels %}<p><b>Tags</b> <span class="chips">{% for l in labels %}<a class="chip" href="/blog/?tag={{ l | slugify }}">{{ l }}</a>{% endfor %}</span></p>{% endif %}
     </div>
+    {%- if series and collections.series.length > 1 %}
+    <nav class="series" aria-label="Series: Clinical foundations of medical AI">
+      <p class="h">Series · Clinical foundations of medical AI</p>
+      <ol>
+      {%- for p in collections.series %}
+        {%- set label = ("Part " + p.data.part + " · " if p.data.part else "Talk notes · ") + p.data.title %}
+        {%- if p.url == page.url %}<li aria-current="page">{{ label }}</li>
+        {%- elif p.url %}<li><a href="{{ p.url }}">{{ label }}</a></li>
+        {%- else %}<li class="soon">{{ label }} <span>(coming {{ p.date | dayMonth }})</span></li>{% endif %}
+      {%- endfor %}
+      </ol>
+    </nav>
+    {%- endif %}
   </header>
   {%- if toc %}
   <nav class="toc" aria-label="On this page">
@@ -31,6 +46,11 @@ layout: layouts/base.njk
   {%- endif %}
   <article>
     {{ content | safe }}
+    {%- if series %}{% set nxt = collections.series | seriesNext(page.url) %}{% if nxt and nxt.url %}
+    <p class="series-next"><span>Next in the series</span><a href="{{ nxt.url }}">{{ nxt.data.title }} →</a></p>
+    {%- elif nxt %}
+    <p class="series-next soon"><span>Next in the series · {{ nxt.date | dayMonth }}</span><b>{{ nxt.data.title }}</b></p>
+    {%- endif %}{% endif %}
     <p class="post-end">
       <span>Share on <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ postUrl | urlencode }}">LinkedIn</a> or <a href="https://x.com/intent/post?url={{ postUrl | urlencode }}&text={{ title | urlencode }}&via=magnooj">X</a></span>
       <a href="/blog/">← All writing</a>
