@@ -3,11 +3,11 @@ layout: layouts/base.njk
 ---
 <main class="main">
   <section class="hero-home">
-    <img class="avatar" src="/assets/img/ali.jpg" alt="Portrait of Ali Ganjizadeh" width="116" height="116">
+    <img class="avatar" src="/assets/img/ali.jpg" alt="Portrait of Ali Ganjizadeh" width="136" height="170">
     <div>
       <p class="eyebrow">Medical AI · Data · Evaluation</p>
       <h1>Ali Ganjizadeh<span class="creds">, MD, MBA</span></h1>
-      <p class="tagline">Physician-scientist by training, engineer by practice, businessman at heart.</p>
+      <p class="tagline"><span class="nb">Physician-scientist by training,</span> <span class="nb">engineer by practice,</span> <span class="nb">businessman at heart.</span></p>
     </div>
   </section>
 
@@ -41,20 +41,8 @@ layout: layouts/base.njk
   <section class="block" id="experience">
     <div class="block-head"><h2>Experience</h2><a href="/about/">Full story →</a></div>
     <ol class="timeline">
-      <li class="now"><span class="when">Jan 2025 – now</span><b>HOPPR</b>
-        <span class="note">Foundation models for medical imaging, across the data and model lifecycle.</span>
-        <ul class="roles">
-          <li class="cur"><b>Senior Technical Product Manager</b> <span class="dates">Sep 2025 – now</span></li>
-          <li><b>Research Scientist</b> <span class="dates">Jan 2025 – Sep 2025</span></li>
-        </ul></li>
-      <li class="now"><span class="when">Oct 2022 – now</span><b>Mayo Clinic</b> <span class="org">· Radiology AI &amp; Informatics Lab</span>
-        <span class="note">Computer vision, language models and informatics for radiology research.</span>
-        <ul class="roles">
-          <li class="cur"><b>Research Collaborator</b> <span class="dates">Jan 2025 – now</span></li>
-          <li><b>Postdoctoral Research Fellow</b> <span class="dates">Oct 2022 – Jan 2025</span></li>
-        </ul></li>
-      <li><span class="when">Jan 2021 – Jul 2022</span><b>Product Manager</b> <span class="org">· Neuronio</span></li>
-      <li><span class="when">Nov 2020 – Jul 2022</span><b>Emergency Physician</b> <span class="org">· Susangerd General Hospital, Iran</span></li>
+      {%- set full = false %}
+      {%- for x in experience.work %}{% include "partials/xp-item.njk" %}{% endfor %}
     </ol>
   </section>
 

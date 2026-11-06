@@ -25,19 +25,32 @@ permalink: /about/
     <p>I’m Vice Chair of the AI Education Committee at the Society for Imaging Informatics in Medicine (SIIM), and I help develop AI standards guidelines with Integrating the Healthcare Enterprise (IHE), an initiative RSNA co-founded. I enjoy teaching clinicians and students how to judge an AI tool. Away from a screen, I’m usually on a mountain bike.</p>
   </div>
 
-  <section class="block">
-    <div class="block-head"><h2>Education</h2></div>
-    <ol class="timeline">
-      <li><span class="when">2022</span><b>MBA, Data Science &amp; Business Analytics</b> <span class="org">· Industrial Management Institute, Tehran</span></li>
-      <li><span class="when">2020</span><b>MD, Doctor of Medicine</b> <span class="org">· Tehran University of Medical Sciences</span></li>
+  {%- set full = true %}
+  <section class="block" id="experience">
+    <div class="block-head"><h2>Experience</h2></div>
+    <ol class="timeline full">
+      {%- for x in experience.work %}{% include "partials/xp-item.njk" %}{% endfor %}
     </ol>
   </section>
 
-  <section class="block">
-    <div class="block-head"><h2>Service</h2></div>
-    <ol class="timeline">
-      <li><span class="when">2023 – now</span><b>Vice Chair, AI Education Committee</b> <span class="org">· Society for Imaging Informatics in Medicine (SIIM)</span></li>
-      <li><span class="when">2023 – now</span><b>Member, Integrating the Healthcare Enterprise (IHE)</b> <span class="org">· Radiological Society of North America (RSNA)</span><span class="note">Developing AI standards guidelines.</span></li>
+  <section class="block" id="ventures">
+    <div class="block-head"><h2>Ventures</h2></div>
+    <ol class="timeline full">
+      {%- for x in experience.ventures %}{% include "partials/xp-item.njk" %}{% endfor %}
+    </ol>
+  </section>
+
+  <section class="block" id="volunteering">
+    <div class="block-head"><h2>Volunteering</h2></div>
+    <ol class="timeline full">
+      {%- for x in experience.volunteering %}{% include "partials/xp-item.njk" %}{% endfor %}
+    </ol>
+  </section>
+
+  <section class="block" id="education">
+    <div class="block-head"><h2>Education</h2></div>
+    <ol class="timeline full">
+      {%- for x in experience.education %}{% include "partials/xp-item.njk" %}{% endfor %}
     </ol>
   </section>
 

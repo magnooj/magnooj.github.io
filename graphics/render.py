@@ -7,6 +7,7 @@ src/assets/img/; the cards are not published on the site. The 2x LinkedIn images
 carousel PDF go to --linkedin-dir (default graphics/out/linkedin, not committed).
 """
 import argparse
+import html
 import pathlib
 import re
 import subprocess
@@ -20,7 +21,8 @@ OUT = GFX / "out"
 BLOG_IMG = ROOT / "src/assets/img/blog/model-not-hard-part"
 SITE_IMG = ROOT / "src/assets/img"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-FONTS = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">'
+FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..800'
+         '&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap">')
 
 
 def foot(right="magnooj.github.io", swipe=False):
@@ -31,7 +33,8 @@ def foot(right="magnooj.github.io", swipe=False):
 def card(kicker, title, fig, source="", sub="", title_cls="", swipe=False):
     sub_html = f'<p class="sub">{sub}</p>' if sub else ""
     src_html = f'<p class="source">{source}</p>' if source else ""
-    return (f'<section class="card"><p class="kicker">{kicker}</p><h1 class="{title_cls}">{title}</h1>{sub_html}'
+    return (f'<section class="card"><header class="band"><p class="kicker">{kicker}</p>'
+            f'<h1 class="{title_cls}">{title}</h1>{sub_html}</header>'
             f'<div class="fig">{fig}</div>{src_html}{foot(swipe=swipe)}</section>')
 
 
@@ -169,8 +172,8 @@ OG_ROWS = "".join(
     for p, label in ((0.01, "1 in 100"), (0.05, "1 in 20"), (0.10, "1 in 10"), (0.30, "3 in 10")))
 
 OG_POST = (
-    '<section class="og"><p class="kicker">Writing · Evaluating medical AI</p>'
-    '<div class="ogwrap"><div class="left"><h1>The model is not the hard part</h1>'
+    '<section class="og"><div class="ogwrap"><div class="left"><p class="kicker">Writing · Evaluating medical AI</p>'
+    '<h1>The model is not the hard part</h1>'
     '<p class="sub">Four questions for any medical AI tool, and why answering them takes clinical training more than code.</p></div>'
     '<div class="ogchart"><p class="ct">How often an alert is right</p>'
     '<p class="cs">95% sensitive, 95% specific tool, by how many patients have the condition</p>'
@@ -178,19 +181,36 @@ OG_POST = (
     '<div class="ogfoot"><span class="who"><span class="mark">AG</span>Ali Ganjizadeh, MD, MBA</span><span class="url">magnooj.github.io</span></div></section>')
 
 OG_DEFAULT = (
-    '<section class="og"><div class="ogwrap" style="grid-template-columns:1fr 150px"><div class="left">'
+    '<section class="og me"><div class="ogwrap"><div class="left">'
     '<p class="kicker">Medical AI · Data · Evaluation</p>'
-    '<h1>Ali Ganjizadeh, MD, MBA</h1>'
+    '<h1>Ali Ganjizadeh<span class="creds">, MD, MBA</span></h1>'
     '<p class="sub">Physician-scientist by training, engineer by practice, businessman at heart. Writing on the data, labels and evaluation behind medical AI.</p></div>'
     f'<img class="photo" src="{(ROOT / "src/assets/img/ali.jpg").as_uri()}" alt=""></div>'
     '<div class="ogfoot"><span class="who"><span class="mark">AG</span>magnooj.github.io</span><span class="url">LinkedIn · X @magnooj</span></div></section>')
 
 
+CHECK = """<script>document.fonts.ready.then(() => {
+  const out = [];
+  document.querySelectorAll('.card, .og').forEach((c, i) => {
+    const dy = c.scrollHeight - c.clientHeight, dx = c.scrollWidth - c.clientWidth;
+    if (dy > 1 || dx > 1) out.push(`${i}:frame by ${Math.max(dy, dx)}px`);
+    c.querySelectorAll('.og .left, .t9 .g, .box, .lad .st, .pillar, .q, .job, .step, .s, .bx, .cell').forEach(el => {
+      const ey = el.scrollHeight - el.clientHeight, ex = el.scrollWidth - el.clientWidth;
+      if (ey > 1 || ex > 1) out.push(`${i}:${el.className} "${el.textContent.trim().slice(0, 30)}" by ${Math.max(ey, ex)}px`);
+    });
+    c.querySelectorAll('.mini').forEach(m => {
+      const r = m.getBoundingClientRect(), k = m.firstElementChild.getBoundingClientRect();
+      const over = Math.max(r.top + 8 - k.top, k.bottom - (r.bottom - 8), r.left - k.left, k.right - r.right);
+      if (over > 0) out.push(`${i}:figure panel by ${Math.ceil(over)}px`);
+    });
+  });
+  out.forEach(o => { const e = document.createElement('i'); e.dataset.overflow = o; document.body.append(e); });
+});</script>"""
+
+
 def page(body, w, h):
     css = (GFX / "cards.css").read_text()
-    check = ("<script>document.fonts.ready.then(() => document.querySelectorAll('.card').forEach((c, i) => {"
-             "if (c.scrollHeight > c.clientHeight + 1) document.body.insertAdjacentHTML('beforeend',"
-             "`<i data-overflow='${i}:${c.scrollHeight - c.clientHeight}px'></i>`); }));</script>")
+    check = CHECK
     return (f'<!doctype html><html><head><meta charset="utf-8">{FONTS}<style>{css}'
             f'@page {{ size: {w}px {h}px; margin: 0; }} html, body {{ width: {w}px; }}</style></head><body>{body}{check}</body></html>')
 
@@ -204,6 +224,14 @@ def chrome(args, profile):
 def shot(html_path, png_path, w, h, profile):
     chrome([f"--window-size={w},{h}", "--force-device-scale-factor=2", f"--screenshot={png_path}",
             html_path.as_uri()], profile)
+
+
+def overflow(html_path, names, w, h, profile):
+    """Load a page that holds several cards or OG images and return one line per element that overflows."""
+    dom = subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--virtual-time-budget=10000",
+                          f"--user-data-dir={profile}", f"--window-size={w},{h}", "--dump-dom", html_path.as_uri()],
+                         capture_output=True, text=True).stdout
+    return [f"{names[int(i)]}: {html.unescape(msg)}" for i, msg in re.findall(r'data-overflow="(\d+):([^"]*)"', dom)]
 
 
 def downscale(src, dst, w, h):
@@ -221,31 +249,31 @@ def main():
         d.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as profile:
         for name, body in CARDS.items():
-            html = OUT / "html" / f"{name}.html"
-            html.write_text(page(body, 1080, 1350))
+            path = OUT / "html" / f"{name}.html"
+            path.write_text(page(body, 1080, 1350))
             big = li / f"{name}.png"
-            shot(html, big, 1080, 1350, profile)
+            shot(path, big, 1080, 1350, profile)
             print("rendered", name, Image.open(big).size)
         deck = OUT / "html" / "carousel.html"
         deck.write_text(page("".join(CARDS.values()), 1080, 1350))
-        dom = subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--virtual-time-budget=10000",
-                              f"--user-data-dir={profile}", "--window-size=1080,1350", "--dump-dom", deck.as_uri()],
-                             capture_output=True, text=True).stdout
-        overflow = re.findall(r'data-overflow="(\d+):(\d+)px"', dom)
-        names = list(CARDS)
-        for i, px in overflow:
-            print(f"WARNING: card {names[int(i)]} overflows by {px}px")
-        if not overflow:
-            print("overflow check: all cards fit")
+        problems = overflow(deck, list(CARDS), 1080, 1350, profile)
         chrome(["--no-pdf-header-footer", f"--print-to-pdf={li / 'carousel.pdf'}", deck.as_uri()], profile)
         print("carousel", li / "carousel.pdf")
-        for name, body, dst in (("og-post", OG_POST, BLOG_IMG / "og.png"), ("og-default", OG_DEFAULT, SITE_IMG / "og-default.png")):
-            html = OUT / "html" / f"{name}.html"
-            html.write_text(page(body, 1200, 627))
+        ogs = (("og-post", OG_POST, BLOG_IMG / "og.png"), ("og-default", OG_DEFAULT, SITE_IMG / "og-default.png"))
+        for name, body, dst in ogs:
+            path = OUT / "html" / f"{name}.html"
+            path.write_text(page(body, 1200, 627))
             big = OUT / f"{name}@2x.png"
-            shot(html, big, 1200, 627, profile)
+            shot(path, big, 1200, 627, profile)
             downscale(big, dst, 1200, 627)
             print("rendered", name, Image.open(dst).size)
+        allog = OUT / "html" / "og-all.html"
+        allog.write_text(page("".join(body for _, body, _ in ogs), 1200, 627))
+        problems += overflow(allog, [name for name, _, _ in ogs], 1200, 627, profile)
+        for p in problems:
+            print("WARNING: overflow in", p)
+        if not problems:
+            print("overflow check: all cards and Open Graph images fit")
 
 
 if __name__ == "__main__":

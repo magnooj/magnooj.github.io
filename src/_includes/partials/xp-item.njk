@@ -1,0 +1,16 @@
+{#- One organization on a timeline. One role: "Title · Organization". Several roles: the organization
+    with its full span, and each role with its own dates under it. Set `full` for the About page. -#}
+{%- set many = x.roles.length > 1 %}
+{%- set text = (x.about or x.note) if full else x.note %}
+<li{% if x.current %} class="now"{% endif %}><span class="when">{{ x.when }}</span>
+  {%- if many %}<b>{{ x.org }}</b>{% if x.sub %} <span class="org">· {{ x.sub }}</span>{% endif %}
+  {%- else %}<b>{{ x.roles[0].title }}</b> <span class="org">· {{ x.org if full else (x.homeOrg or x.org) }}{% if x.sub %}, {{ x.sub }}{% endif %}</span>{% endif %}
+  {%- if full and x.place %} <span class="place">{{ x.place }}</span>{% endif %}
+  {%- if text %}<span class="note">{{ text }}</span>{% endif %}
+  {%- if many %}
+  <ul class="roles">
+    {%- for r in x.roles %}
+    <li{% if r.current %} class="cur"{% endif %}><b>{{ r.title }}</b> <span class="dates">{{ r.when }}</span></li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}</li>

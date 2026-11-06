@@ -1,0 +1,268 @@
+{
+  "_comment": "Timelines on the home and About pages, from Ali's LinkedIn profile (5 Nov 2026). Each entry is one organization; list several roles to show them under it with their own dates. note shows on both pages, about replaces it on the About page, homeOrg replaces org on the home page. No HOPPR internal numbers here.",
+  "work": [
+    {
+      "org": "HOPPR",
+      "place": "Remote",
+      "when": "Jan 2025 – now",
+      "current": true,
+      "note": "Foundation models for medical imaging, across the data and model lifecycle.",
+      "roles": [
+        {
+          "title": "Senior Technical Product Manager",
+          "when": "Sep 2025 – now",
+          "current": true
+        },
+        {
+          "title": "Research Scientist",
+          "when": "Jan 2025 – Sep 2025"
+        }
+      ]
+    },
+    {
+      "org": "Mayo Clinic",
+      "sub": "Radiology AI & Informatics Lab",
+      "place": "Rochester, MN",
+      "when": "Oct 2022 – now",
+      "current": true,
+      "note": "Computer vision, language models and informatics for radiology research.",
+      "roles": [
+        {
+          "title": "Research Collaborator",
+          "when": "Jan 2025 – now",
+          "current": true
+        },
+        {
+          "title": "Postdoctoral Research Fellow",
+          "when": "Oct 2022 – Jan 2025"
+        }
+      ]
+    },
+    {
+      "org": "Neuronio",
+      "place": "Tehran, Iran",
+      "when": "Jan 2021 – Jul 2022",
+      "about": "Moved an FDA-cleared dementia-screening product from neurology clinics into primary care, and revenue grew sixfold.",
+      "roles": [
+        {
+          "title": "Product Manager",
+          "when": "Jan 2021 – Jul 2022"
+        }
+      ]
+    },
+    {
+      "org": "Susangerd General Hospital",
+      "homeOrg": "Susangerd General Hospital, Iran",
+      "sub": "Jundishapur University of Medical Sciences",
+      "place": "Susangerd, Khuzestan, Iran",
+      "when": "Nov 2020 – Jul 2022",
+      "about": "Stabilized critically ill and trauma patients, led rapid-response teams, and read X-ray, CT, MRI and ultrasound to guide acute decisions.",
+      "roles": [
+        {
+          "title": "Emergency Physician",
+          "when": "Nov 2020 – Jul 2022"
+        }
+      ]
+    }
+  ],
+  "ventures": [
+    {
+      "org": "AVECEN",
+      "place": "Tehran, Iran",
+      "when": "Mar 2016 – May 2020",
+      "about": "A product consultancy in digital health and healthcare services: due diligence for venture capital firms and mentoring for startups.",
+      "roles": [
+        {
+          "title": "Product Consultant",
+          "when": "May 2018 – May 2020"
+        },
+        {
+          "title": "Vice Chairman of the Board and Secretary General",
+          "when": "May 2017 – Mar 2020"
+        },
+        {
+          "title": "Co-founder and Board Member",
+          "when": "Mar 2016 – Mar 2020"
+        }
+      ]
+    },
+    {
+      "org": "MedLean",
+      "place": "Tehran, Iran",
+      "when": "Sep 2018 – Feb 2020",
+      "about": "A monthly event series and a magazine, MedLeanMag, on new business ideas in digital health.",
+      "roles": [
+        {
+          "title": "Co-founder and Managing Director",
+          "when": "Sep 2018 – Feb 2020"
+        }
+      ]
+    },
+    {
+      "org": "REDXIR",
+      "when": "Sep 2018 – Aug 2019",
+      "about": "An online course to reduce stigma and discrimination in healthcare, funded by a UNAIDS grant.",
+      "roles": [
+        {
+          "title": "Co-founder and Product Developer",
+          "when": "Sep 2018 – Aug 2019"
+        }
+      ]
+    },
+    {
+      "org": "Iran International Public Health Summer School (IPHS)",
+      "place": "Tehran and Isfahan, Iran",
+      "when": "Jan 2014 – Sep 2017",
+      "about": "A seven-day game in which students play public-health specialists and work to improve their community's health through ten missions. It received the AMEE Patil Innovation in Teaching Award in 2018.",
+      "roles": [
+        {
+          "title": "Board Member and Project Supervisor, IPHS 2017",
+          "when": "Oct 2016 – Sep 2017"
+        },
+        {
+          "title": "Board Member and Chief Executive Officer, IPHS 2016",
+          "when": "Mar 2016 – Sep 2016"
+        },
+        {
+          "title": "Board Member and Executive Director, IPHS Winter Camp 2016",
+          "when": "Oct 2015 – Mar 2016"
+        },
+        {
+          "title": "Board Member and On-Campus Training Coordinator, IPHS 2015",
+          "when": "Oct 2014 – Sep 2015"
+        },
+        {
+          "title": "Educational Assessment Officer, IPHS 2014",
+          "when": "Jan 2014 – Sep 2014"
+        }
+      ]
+    },
+    {
+      "org": "Marlik Institute of Innovation and Technology",
+      "place": "Rasht, Iran",
+      "when": "Nov 2010 – Jan 2013",
+      "about": "A startup institute for designing and building new products and inventions.",
+      "roles": [
+        {
+          "title": "Co-founder",
+          "when": "Nov 2010 – Jan 2013"
+        }
+      ]
+    }
+  ],
+  "volunteering": [
+    {
+      "org": "Society for Imaging Informatics in Medicine (SIIM)",
+      "when": "Jul 2023 – now",
+      "current": true,
+      "roles": [
+        {
+          "title": "Vice Chair, AI Education Committee",
+          "when": "Jul 2026 – now",
+          "current": true
+        },
+        {
+          "title": "Member, Machine Learning Education Committee",
+          "when": "Jul 2023 – Jul 2026"
+        }
+      ]
+    },
+    {
+      "org": "Integrating the Healthcare Enterprise (IHE)",
+      "sub": "Radiological Society of North America (RSNA)",
+      "when": "2023 – now",
+      "current": true,
+      "about": "Developing AI standards guidelines.",
+      "roles": [
+        {
+          "title": "Member",
+          "when": "2023 – now",
+          "current": true
+        }
+      ]
+    },
+    {
+      "org": "Entrepreneurship Olympiad Team",
+      "sub": "Tehran University of Medical Sciences",
+      "when": "Oct 2017 – May 2022",
+      "about": "Founded and coached the university team for the annual championship.",
+      "roles": [
+        {
+          "title": "Founder, Supervisor and Coach",
+          "when": "Oct 2017 – May 2022"
+        }
+      ]
+    },
+    {
+      "org": "Students’ Scientific Research Center",
+      "sub": "Tehran University of Medical Sciences",
+      "when": "Feb 2014 – Oct 2016",
+      "about": "Led a five-year strategic plan for student research and product development. Helping Hands gave health professions students early exposure to the community and the social determinants of health.",
+      "roles": [
+        {
+          "title": "Director of Research and Development in Policies",
+          "when": "Oct 2014 – Oct 2016"
+        },
+        {
+          "title": "Member of the Central Council",
+          "when": "Apr 2014 – Jun 2016"
+        },
+        {
+          "title": "Principal Investigator, Helping Hands project",
+          "when": "May 2014 – Mar 2016"
+        },
+        {
+          "title": "Principal Investigator, DANA project",
+          "when": "Feb 2014 – Jun 2014"
+        }
+      ]
+    },
+    {
+      "org": "International Federation of Medical Students’ Associations (IFMSA)",
+      "sub": "Iran, TUMS branch",
+      "when": "Oct 2013 – Oct 2014",
+      "roles": [
+        {
+          "title": "Vice President of Internal Affairs",
+          "when": "Jun 2014 – Oct 2014"
+        },
+        {
+          "title": "Local Public Health Officer",
+          "when": "Dec 2013 – Jun 2014"
+        },
+        {
+          "title": "Vice Officer, Medical Education Committee",
+          "when": "Oct 2013 – May 2014"
+        },
+        {
+          "title": "Member, Organizing Committee",
+          "when": "Nov 2013"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "org": "Industrial Management Institute",
+      "place": "Tehran, Iran",
+      "when": "Sep 2021 – Jul 2022",
+      "roles": [
+        {
+          "title": "MBA, Data Science and Business Analytics",
+          "when": "Sep 2021 – Jul 2022"
+        }
+      ]
+    },
+    {
+      "org": "Tehran University of Medical Sciences",
+      "place": "Tehran, Iran",
+      "when": "2012 – 2020",
+      "roles": [
+        {
+          "title": "MD, Doctor of Medicine",
+          "when": "2012 – 2020"
+        }
+      ]
+    }
+  ]
+}

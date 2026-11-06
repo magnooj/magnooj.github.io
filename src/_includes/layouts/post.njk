@@ -3,10 +3,12 @@ layout: layouts/base.njk
 ---
 {%- set postUrl = page.url | absoluteUrl(site.url) %}
 <main class="post-wrap">
-  <header class="post-head">
+  <header class="post-band">
     <p class="eyebrow"><a href="/blog/" style="text-decoration:none">Writing</a> · {{ topic }}</p>
     <h1>{{ title }}</h1>
     <p class="dek">{{ dek or description }}</p>
+  </header>
+  <div class="post-head">
     <div class="byline">
       <img src="/assets/img/ali.jpg" alt="" width="38" height="38">
       <span><a href="/about/"><b>{{ site.author }}</b></a></span>
@@ -25,7 +27,7 @@ layout: layouts/base.njk
       <p class="h">Series · Clinical foundations of medical AI</p>
       <ol>
       {%- for p in collections.series %}
-        {%- set label = ("Part " + p.data.part + " · " if p.data.part else "Talk notes · ") + p.data.title %}
+        {%- set label = ("Part " + p.data.part + " · " if p.data.part else "Overview · ") + p.data.title %}
         {%- if p.url == page.url %}<li aria-current="page">{{ label }}</li>
         {%- elif p.url %}<li><a href="{{ p.url }}">{{ label }}</a></li>
         {%- else %}<li class="soon">{{ label }} <span>(coming {{ p.date | dayMonth }})</span></li>{% endif %}
@@ -33,7 +35,7 @@ layout: layouts/base.njk
       </ol>
     </nav>
     {%- endif %}
-  </header>
+  </div>
   {%- if toc %}
   <nav class="toc" aria-label="On this page">
     <p class="h">On this page</p>
