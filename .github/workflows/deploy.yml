@@ -7,9 +7,12 @@ on:
   push:
     branches: [main]
   schedule:
-    # Posts go live from 11:00 UTC (6 am New York in winter). Two runs, in case GitHub starts one late.
+    # Posts go live from 05:00 UTC (midnight New York in winter). GitHub has been starting
+    # scheduled runs 5 to 7 hours late, so four runs spread over the morning.
+    - cron: "7 5 * * *"
+    - cron: "37 6 * * *"
+    - cron: "7 8 * * *"
     - cron: "17 11 * * *"
-    - cron: "47 12 * * *"
   workflow_dispatch:
 
 permissions:

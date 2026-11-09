@@ -33,7 +33,7 @@ Built with [Eleventy](https://www.11ty.dev/). `main` holds the source. GitHub Ac
 
 ## Schedule a post
 
-A post goes live at 6 am New York time (11:00 UTC) on its `date`. Give it a future `date`, remove `draft: true`, then commit and push: it stays hidden until that morning, when the daily build publishes it. Until then, links to it from other posts show as plain text, and the series box lists it as "coming 17 November".
+A post goes live at 05:00 UTC (midnight New York time in winter) on its `date`. GitHub often starts scheduled builds hours late, so the workflow runs four times each morning and a post is usually up by 7 am New York time. Give it a future `date`, remove `draft: true`, then commit and push: it stays hidden until that day, when the first morning build publishes it. Until then, links to it from other posts show as plain text, and the series box lists it as "coming 17 November".
 
 - `npm run preview` shows drafts and scheduled posts at http://localhost:8090, for review only.
 - `NOW=2026-11-17T12:00Z npm run build` builds the site as it will look at that time.

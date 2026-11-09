@@ -19,7 +19,7 @@ layout: layouts/base.njk
       {%- if talk %}<p><b>Talk</b> {{ talk | safe }}</p>{% endif %}
       {%- if disclosure %}<p><b>Disclosure</b> {{ disclosure }}</p>{% endif %}
       {%- if draft %}<p><b>Draft</b> Preview only. Not published. Planned for {{ page.date | longDate }}.</p>
-      {%- elif page.date | goesLive %}<p><b>Scheduled</b> Goes live on {{ page.date | goesLive }}, 6 am New York time.</p>{% endif %}
+      {%- elif page.date | goesLive %}<p><b>Scheduled</b> Goes live on {{ page.date | goesLive }}, early morning New York time.</p>{% endif %}
       {%- if labels %}<p><b>Tags</b> <span class="chips">{% for l in labels %}<a class="chip" href="/blog/?tag={{ l | slugify }}">{{ l }}</a>{% endfor %}</span></p>{% endif %}
     </div>
     {%- if series and collections.series.length > 1 %}
