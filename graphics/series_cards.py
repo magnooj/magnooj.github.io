@@ -28,7 +28,7 @@ NINE_LEGEND = ('<div class="legend-row"><span><i style="background:var(--accent)
                '<span><i style="background:var(--ink)"></i>The model</span></div>')
 
 AUC = (
-    '<p class="scale-note">AUC: how well the model separates films with and without pneumothorax <span class="nw">(0.5 = chance, 1.0 = perfect)</span></p>'
+    '<p class="scale-note">AUC: how well the model separates films with and without pneumothorax <span class="nw">(bars run from 0.5 = chance to 1.0 = perfect)</span></p>'
     '<div class="bars compact">'
     '<div><p class="bar-label">All test films</p>'
     '<div class="bar-row"><div class="bar grey-bar" style="width:518px"></div><span class="bar-val">0.87</span></div></div>'
@@ -38,7 +38,7 @@ AUC = (
     '<div class="bar-row"><div class="bar acc" style="width:378px"></div><span class="bar-val acc">0.77</span></div></div>'
     '</div>'
     '<p class="axis-note" style="margin-top:18px">80% of the pneumothoraces in the test set already had a drain.</p>'
-    '<div class="callbox">The drain is the treatment. <b>A radiologist reviewing the misses found this.</b></div>')
+    '<div class="callbox">A chest drain is a common treatment. <b>Films without one were over-represented among the misses.</b></div>')
 
 # ---------- Part 2: surrogate improved, outcome worsened ----------
 VERSUS = (
@@ -102,7 +102,7 @@ MASAI = (
     '<div class="stats3 stack">'
     '<div class="s"><b>244 vs 203</b><p>cancers found, first 80,033 women</p><small>Similar detection rate: 6.1 vs 5.1 per 1,000</small></div>'
     '<div class="s teal"><b>44% fewer</b><p>screen reads for radiologists</p><small>46,345 vs 83,231, same 80,033 women</small></div>'
-    '<div class="s"><b>0.88</b><p>interval cancer ratio, about 106,000 women</p><small>1.55 vs 1.76 per 1,000: non-inferior, not proven better</small></div>'
+    '<div class="s"><b>0.88</b><p>interval cancer ratio, about 106,000 women</p><small>1.55 vs 1.76 per 1,000: non-inferior, not shown better</small></div>'
     '</div>'
     '<div class="caveat stone"><b>Caveats:</b> interval cancers are a surrogate for deaths · <span class="nw">one product, one country</span></div>')
 
@@ -131,12 +131,12 @@ DRIFT = (
 CARDS = {
     "1-hero": card(f"{pill(1)} The big idea", "The model is the small box.", NINE + NINE_LEGEND,
                    sub="Three of the tiles need clinical knowledge most.",
-                   source="After Sculley D et al., NeurIPS 2015 (Fig. 1). The nine clinical tiles are my adaptation."),
+                   source="After Sculley D et al., NeurIPS 2015 (Fig. 1). The nine tiles and their clinical labels are my adaptation."),
     "1-b": card(f"{pill(1)} Hidden stratification", "Best on the patients already treated.", AUC,
-                sub="A pneumothorax model scored 0.87 overall, but 0.77 on films without a chest drain.",
+                sub="A pneumothorax model scored 0.87 overall, but 0.77 on pneumothoraces without a chest drain.",
                 source="Oakden-Rayner L et al. Hidden stratification causes clinically meaningful failures in machine learning for medical imaging. ACM CHIL 2020."),
     "2-hero": card(f"{pill(2)} Label definition", "A proxy label is a surrogate endpoint.", VERSUS,
-                   sub="And surrogates can fail. Pharmacology learned it in 1989. Medical AI learned it again in 2019.",
+                   sub="Medicine has seen stand-ins fail: in a drug trial in 1989, and in a care algorithm in 2019.",
                    source="CAST Investigators. N Engl J Med 1989;321:406-12 · Obermeyer Z et al. Science 2019;366:447-53"),
     "2-b": card(f"{pill(2)} Outcome to proxy", "The further from the patient, the more can fail.", CHAIN,
                 source="Definitions: US Food and Drug Administration, Surrogate Endpoint Resources. The proxy row is mine."),
@@ -148,15 +148,15 @@ CARDS = {
                 sub="Share of alerts that are true for one AI tool, 95% sensitive and 95% specific.",
                 source="Worked example, rounded · A test set with 47.5% bleeds: Voter AF et al. J Am Coll Radiol 2021"),
     "4-hero": card(f"{pill(4)} Evaluation", "Climb the evidence ladder, like a drug.", LADDER,
-                   sub="Most AI tools are judged on past data alone. In drug terms, that’s preclinical.",
+                   sub="In one review, almost all cleared AI devices stopped at past data. In drug terms, that’s preclinical.",
                    source="Adapted from Fryback DG, Thornbury JR. Med Decis Making 1991 · Wu E et al. Nat Med 2021;27:582-4"),
-    "4-b": card(f"{pill(4)} A tool that climbed", "MASAI: AI-supported mammography, randomized.", MASAI, title_cls="md",
+    "4-b": card(f"{pill(4)} The randomized rung", "MASAI: AI-supported mammography, randomized.", MASAI, title_cls="md",
                 sub="Sweden double-reads every screen. In the AI arm, exams scoring 1 to 9 got one reader; 10 got two.",
                 source="Lång K et al. Lancet Oncol 2023;24:936-44 · Gommers J et al. Lancet 2026;407:505-14"),
     "5-hero": card(f"{pill(5)} Integration", "Efficacy is not effectiveness.", INTEG,
                    sub="An accurate eye-screening AI met real clinics in Thailand.",
                    source="Beede E et al. A human-centered evaluation of a deep learning system deployed in clinics for the detection of diabetic retinopathy. CHI 2020."),
-    "5-b": card(f"{pill(5)} After go-live", "Same code, different patients.", DRIFT,
+    "5-b": card(f"{pill(5)} After go-live", "Same model, different patients.", DRIFT,
                 sub="When COVID-19 arrived, the share of inpatients a sepsis model flagged each day more than doubled. The University of Michigan paused the alerts.",
                 source="Wong A et al. JAMA Netw Open 2021;4:e2135286"),
 }
