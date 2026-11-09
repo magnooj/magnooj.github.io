@@ -298,6 +298,14 @@ article li { margin: 0 0 10px; }
 figure { margin: 34px 0 38px; padding: 20px 22px 16px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; }
 figcaption { font-family: var(--sans); font-size: 13.5px; line-height: 1.55; color: var(--ink-3); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); }
 figcaption b { color: var(--ink); font-weight: 600; }
+/* Images inside figures: a single image (.fig-img), a row of labelled images (.fig-row), or an inline SVG schematic (.fig-svg). */
+.fig-img img, .fig-row img { display: block; width: 100%; height: auto; border-radius: 3px; background: var(--panel); }
+.fig-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.fig-row > div { min-width: 0; }
+.fig-row .lbl { display: block; margin-top: 7px; font-family: var(--sans); font-size: 13px; font-weight: 600; line-height: 1.35; color: var(--ink-2); }
+.fig-row .lbl small { display: block; font-weight: 400; color: var(--ink-3); }
+.fig-svg svg { display: block; width: 100%; height: auto; max-width: 720px; margin: 0 auto; font-family: var(--sans); }
+figcaption .credit { display: block; margin-top: 6px; font-size: 12.5px; color: var(--ink-4); }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 12px; }
 .legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; vertical-align: -1px; margin-right: 7px; }
 .sw-ctx { background: var(--ctx); }
